@@ -60,14 +60,14 @@ export function Contact() {
     const project  = fd.get("project") as string || desc;
 
     const msg = [
-      `Hi CalypsoWebsiteBuilders! I'd like to get a quote.`,
+      `Hi CalypsoWebsiteBuilders! I would like to get a quote.`,
       ``,
-      `👤 Name: ${name}`,
-      business ? `🏢 Business: ${business}` : null,
-      `📞 Phone: ${phone}`,
-      `📧 Email: ${email}`,
-      need ? `🛠 Service: ${need}` : null,
-      project ? `📝 Project: ${project}` : null,
+      `>> Name: ${name}`,
+      business ? `>> Business: ${business}` : null,
+      `>> Phone: ${phone}`,
+      `>> Email: ${email}`,
+      need ? `>> Service: ${need}` : null,
+      project ? `>> Project:\n${project}` : null,
     ]
       .filter(Boolean)
       .join("\n");
@@ -102,7 +102,7 @@ export function Contact() {
             <Reveal delay={120}>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:mt-9">
                 <CtaLink
-                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi CalypsoWebsiteBuilders! I'd like to get a quote.")}`}
+                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi CalypsoWebsiteBuilders! I would like to get a quote.")}`}
                   target="_blank"
                   rel="noreferrer"
                   variant="teal"
