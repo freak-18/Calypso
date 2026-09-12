@@ -121,7 +121,7 @@ function ServiceCard({ s, i }: { s: typeof services[0]; i: number }) {
             setSelectedService(s.name, points);
             document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
           }}
-          className="mt-auto flex items-center gap-1.5 pt-6 font-display text-xs font-semibold tracking-wide text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1"
+          className="mt-auto flex items-center gap-1.5 pt-6 font-display text-xs font-semibold tracking-wide text-primary opacity-100 transition-all duration-300 group-hover:translate-x-1 lg:opacity-0 lg:group-hover:opacity-100"
         >
           Get a quote <ArrowUpRight className="size-3.5" />
         </button>
