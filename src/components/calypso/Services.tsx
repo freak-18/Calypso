@@ -70,7 +70,7 @@ function ServiceCard({ s, i }: { s: typeof services[0]; i: number }) {
     <Reveal delay={i * 55} variant="fade-up">
       <article
         ref={tiltRef}
-        className={`group relative flex h-full flex-col overflow-hidden rounded-3xl p-7 transition-all duration-500 ${
+        className={`group relative flex h-full flex-col overflow-hidden rounded-3xl p-5 transition-all duration-500 sm:p-7 ${
           s.featured
             ? "surface-card-glow"
             : "surface-card hover:border-primary/30"
@@ -126,14 +126,14 @@ function ServiceCard({ s, i }: { s: typeof services[0]; i: number }) {
 
 export function Services() {
   return (
-    <section id="services" className="relative py-24 sm:py-32">
+    <section id="services" className="relative py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="Services"
           title={<>What We <span className="text-gradient-teal">Build</span></>}
           subtitle="Every business is different. Our packages are designed to match where you are — and where you're going."
         />
-        <div className="mt-14 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 sm:mt-14 sm:gap-5 md:grid-cols-2 lg:grid-cols-3">
           {services.map((s, i) => <ServiceCard key={s.name} s={s} i={i} />)}
         </div>
       </div>

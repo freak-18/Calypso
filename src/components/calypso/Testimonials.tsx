@@ -23,7 +23,7 @@ function QuoteCard({ q, i }: { q: typeof quotes[0]; i: number }) {
     <Reveal delay={i * 120} variant="scale">
       <figure
         ref={tiltRef}
-        className="surface-card group relative h-full overflow-hidden rounded-[2rem] p-9 transition-all duration-500 hover:border-primary/25"
+        className="surface-card group relative h-full overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:border-primary/25 sm:rounded-[2rem] sm:p-9"
         style={{ transformStyle: "preserve-3d" }}
       >
         <div
@@ -63,13 +63,13 @@ function QuoteCard({ q, i }: { q: typeof quotes[0]; i: number }) {
 
 export function Testimonials() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="Testimonials"
           title={<>What Clients <span className="text-gradient-teal">Say</span></>}
         />
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-10 grid gap-5 sm:mt-14 lg:grid-cols-2">
           {quotes.map((q, i) => <QuoteCard key={i} q={q} i={i} />)}
         </div>
       </div>

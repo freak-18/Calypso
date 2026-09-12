@@ -37,7 +37,7 @@ function ProjectCard({ p, i }: { p: typeof projects[0]; i: number }) {
             loading="lazy"
             width={1200}
             height={900}
-            className="h-72 w-full object-cover transition-transform duration-700 group-hover:scale-108 sm:h-80"
+            className="h-56 w-full object-cover transition-transform duration-700 group-hover:scale-108 sm:h-72 lg:h-80"
             style={{ transition: "transform 0.8s cubic-bezier(0.23,1,0.32,1)" }}
           />
           {/* Overlay on hover */}
@@ -75,14 +75,14 @@ function ProjectCard({ p, i }: { p: typeof projects[0]; i: number }) {
 
 export function Work() {
   return (
-    <section id="work" className="relative py-24 sm:py-32">
+    <section id="work" className="relative py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
         <SectionHeading
           eyebrow="Portfolio"
           title={<>Our <span className="text-gradient-teal">Work</span></>}
           subtitle="A look at the digital presences we've built."
         />
-        <div className="mt-14 grid gap-6 lg:grid-cols-2">
+        <div className="mt-10 grid gap-5 sm:mt-14 lg:grid-cols-2">
           {projects.map((p, i) => <ProjectCard key={p.name} p={p} i={i} />)}
         </div>
       </div>

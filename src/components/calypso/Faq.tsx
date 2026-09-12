@@ -35,7 +35,7 @@ const faqs = [
 
 export function Faq() {
   return (
-    <section id="faq" className="relative py-24 sm:py-32">
+    <section id="faq" className="relative py-16 sm:py-24 lg:py-32">
       <div className="mx-auto max-w-4xl px-5 sm:px-8">
         <SectionHeading eyebrow="FAQ" title="Frequently Asked Questions" />
 

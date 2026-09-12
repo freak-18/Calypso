@@ -11,8 +11,7 @@ const reasons = [
 
 export function Why() {
   return (
-    <section id="why" className="relative overflow-hidden py-24 sm:py-32">
-      {/* Liquid blob */}
+    <section id="why" className="relative overflow-hidden py-16 sm:py-24 lg:py-32">
       <div
         aria-hidden="true"
         className="liquid-blob pointer-events-none absolute left-[-10%] top-1/2 -z-10 size-[40rem] -translate-y-1/2 opacity-[0.06]"
@@ -20,7 +19,9 @@ export function Why() {
       />
 
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-14 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+
+          {/* Left sticky col */}
           <div className="lg:sticky lg:top-28 lg:self-start">
             <SectionHeading
               align="left"
@@ -29,13 +30,13 @@ export function Why() {
               subtitle="Calypso is not a cheap freelancer — it's a digital partner that turns your brand into a revenue-generating online presence."
             />
             <Reveal delay={120}>
-              <div className="mt-9 grid grid-cols-2 gap-4">
+              <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-9 sm:gap-4">
                 {[
                   { k: "One team", v: "Design + Dev + Strategy" },
                   { k: "Value-priced", v: "Not billed by the hour" },
                 ].map((x) => (
-                  <div key={x.k} className="surface-card-glow group rounded-2xl p-5 transition-all duration-300 hover:-translate-y-1">
-                    <p className="font-display text-base font-semibold text-primary">{x.k}</p>
+                  <div key={x.k} className="surface-card-glow group rounded-2xl p-4 transition-all duration-300 hover:-translate-y-1 sm:p-5">
+                    <p className="font-display text-sm font-semibold text-primary sm:text-base">{x.k}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{x.v}</p>
                   </div>
                 ))}
@@ -43,20 +44,21 @@ export function Why() {
             </Reveal>
           </div>
 
+          {/* Right reasons list */}
           <div className="space-y-3">
             {reasons.map((r, i) => (
               <Reveal key={r.title} delay={i * 70} variant="fade-left">
-                <div className="group surface-card relative flex items-start gap-5 overflow-hidden rounded-2xl p-6 transition-all duration-500 hover:translate-x-2 hover:border-primary/30">
+                <div className="group surface-card relative flex items-start gap-4 overflow-hidden rounded-2xl p-5 transition-all duration-500 hover:translate-x-2 hover:border-primary/30 sm:gap-5 sm:p-6">
                   <div
                     className="pointer-events-none absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100"
                     style={{ background: "linear-gradient(90deg, color-mix(in oklab, var(--teal) 6%, transparent), transparent)" }}
                   />
-                  <span className="relative mt-0.5 inline-flex size-11 shrink-0 items-center justify-center rounded-xl bg-surface-2 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[var(--neon-teal)]">
-                    <r.icon className="size-5" strokeWidth={1.8} />
+                  <span className="relative mt-0.5 inline-flex size-10 shrink-0 items-center justify-center rounded-xl bg-surface-2 text-primary transition-all duration-500 group-hover:bg-primary group-hover:text-primary-foreground group-hover:shadow-[var(--neon-teal)] sm:size-11">
+                    <r.icon className="size-4 sm:size-5" strokeWidth={1.8} />
                   </span>
-                  <div className="relative">
-                    <h3 className="text-lg font-semibold">{r.title}</h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{r.body}</p>
+                  <div className="relative min-w-0">
+                    <h3 className="text-base font-semibold sm:text-lg">{r.title}</h3>
+                    <p className="mt-1 text-sm leading-relaxed text-muted-foreground sm:mt-1.5">{r.body}</p>
                   </div>
                   <span className="relative ml-auto hidden font-display text-xs font-bold text-primary/20 transition-colors duration-300 group-hover:text-primary/60 sm:block">
                     0{i + 1}

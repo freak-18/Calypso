@@ -62,14 +62,14 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="relative overflow-hidden py-24 sm:py-32">
+    <section id="contact" className="relative overflow-hidden py-16 sm:py-24 lg:py-32">
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-x-0 bottom-0 -z-10 h-[34rem]"
         style={{ background: "var(--gradient-abyss)", transform: "rotate(180deg)" }}
       />
       <div className="mx-auto max-w-7xl px-5 sm:px-8">
-        <div className="grid gap-14 lg:grid-cols-[0.95fr_1.05fr]">
+        <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:gap-14">
           <div>
             <SectionHeading
               align="left"
@@ -78,17 +78,18 @@ export function Contact() {
               subtitle="Tell us about your business — we'll get back to you with a free consultation and quote."
             />
             <Reveal delay={120}>
-              <div className="mt-9 flex flex-wrap gap-3">
+              <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:mt-9">
                 <CtaLink
                   href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi CalypsoWebsiteBuilders! I'd like to get a quote.")}`}
                   target="_blank"
                   rel="noreferrer"
                   variant="teal"
+                  className="w-full justify-center sm:w-auto"
                 >
                   <MessageCircle className="size-4" />
                   Chat With Us on WhatsApp
                 </CtaLink>
-                <CtaLink href="#enquiry" variant="ghost">
+                <CtaLink href="#enquiry" variant="ghost" className="w-full justify-center sm:w-auto">
                   Fill Out the Enquiry Form
                 </CtaLink>
               </div>
@@ -99,16 +100,16 @@ export function Contact() {
             <form
               id="enquiry"
               onSubmit={handleSubmit}
-              className="surface-card rounded-[2rem] p-7 sm:p-9"
+              className="surface-card rounded-2xl p-5 sm:rounded-[2rem] sm:p-7 lg:p-9"
             >
-              <div className="grid gap-5 sm:grid-cols-2">
+              <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                 <Field id="name" label="Full Name" required />
                 <Field id="business" label="Business Name" />
-                <Field id="phone" label="Phone / WhatsApp Number" type="tel" required />
+                <Field id="phone" label="Phone / WhatsApp" type="tel" required />
                 <Field id="email" label="Email" type="email" required />
               </div>
 
-              <div className="mt-5 space-y-2">
+              <div className="mt-4 space-y-2 sm:mt-5">
                 <Label className="text-xs tracking-[0.14em] uppercase text-muted-foreground">
                   What do you need?
                 </Label>
@@ -118,15 +119,13 @@ export function Contact() {
                   </SelectTrigger>
                   <SelectContent>
                     {needs.map((n) => (
-                      <SelectItem key={n} value={n}>
-                        {n}
-                      </SelectItem>
+                      <SelectItem key={n} value={n}>{n}</SelectItem>
                     ))}
                   </SelectContent>
                 </Select>
               </div>
 
-              <div className="mt-5 space-y-2">
+              <div className="mt-4 space-y-2 sm:mt-5">
                 <Label
                   htmlFor="project"
                   className="text-xs tracking-[0.14em] uppercase text-muted-foreground"
@@ -142,7 +141,7 @@ export function Contact() {
                 />
               </div>
 
-              <CtaButton type="submit" className="mt-7 w-full">
+              <CtaButton type="submit" className="mt-6 w-full sm:mt-7">
                 Send via WhatsApp
                 <Send className="size-4" />
               </CtaButton>
