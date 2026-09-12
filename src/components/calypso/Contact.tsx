@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { MessageCircle, Send } from "lucide-react";
-import { toast } from "sonner";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -24,10 +23,43 @@ const needs = [
   "Not Sure Yet",
 ];
 
-const WHATSAPP_URL = "https://wa.me/910000000000?text=Hi%20Calypso%2C%20I%27d%20like%20a%20quote";
+const WA_NUMBER = "916374423734";
 
 export function Contact() {
   const [need, setNeed] = useState("");
+
+  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    const fd = new FormData(e.currentTarget);
+
+    const name     = fd.get("name") as string;
+    const business = fd.get("business") as string;
+    const phone    = fd.get("phone") as string;
+    const email    = fd.get("email") as string;
+    const project  = fd.get("project") as string;
+
+    const msg = [
+      `Hi CalypsoWebsiteBuilders! I'd like to get a quote.`,
+      ``,
+      `👤 Name: ${name}`,
+      business ? `🏢 Business: ${business}` : null,
+      `📞 Phone: ${phone}`,
+      `📧 Email: ${email}`,
+      need ? `🛠 Service: ${need}` : null,
+      project ? `📝 Project: ${project}` : null,
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    window.open(
+      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
+      "_blank",
+      "noopener,noreferrer",
+    );
+
+    (e.currentTarget as HTMLFormElement).reset();
+    setNeed("");
+  }
 
   return (
     <section id="contact" className="relative overflow-hidden py-24 sm:py-32">
@@ -47,7 +79,12 @@ export function Contact() {
             />
             <Reveal delay={120}>
               <div className="mt-9 flex flex-wrap gap-3">
-                <CtaLink href={WHATSAPP_URL} target="_blank" rel="noreferrer" variant="teal">
+                <CtaLink
+                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi CalypsoWebsiteBuilders! I'd like to get a quote.")}`}
+                  target="_blank"
+                  rel="noreferrer"
+                  variant="teal"
+                >
                   <MessageCircle className="size-4" />
                   Chat With Us on WhatsApp
                 </CtaLink>
@@ -61,12 +98,7 @@ export function Contact() {
           <Reveal delay={100}>
             <form
               id="enquiry"
-              onSubmit={(e) => {
-                e.preventDefault();
-                toast.success("Thanks! We'll be in touch within one business day.");
-                (e.currentTarget as HTMLFormElement).reset();
-                setNeed("");
-              }}
+              onSubmit={handleSubmit}
               className="surface-card rounded-[2rem] p-7 sm:p-9"
             >
               <div className="grid gap-5 sm:grid-cols-2">
@@ -111,7 +143,7 @@ export function Contact() {
               </div>
 
               <CtaButton type="submit" className="mt-7 w-full">
-                Send Enquiry
+                Send via WhatsApp
                 <Send className="size-4" />
               </CtaButton>
             </form>
