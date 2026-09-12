@@ -25,7 +25,7 @@ const needs = [
   "Not Sure Yet",
 ];
 
-const WA_NUMBER = "916374423734";
+const WA_NUMBERS = ["916374423734", "916380200782"];
 
 export function Contact() {
   const [need, setNeed] = useState("");
@@ -72,11 +72,12 @@ export function Contact() {
       .filter(Boolean)
       .join("\n");
 
-    window.open(
-      `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`,
-      "_blank",
-      "noopener,noreferrer",
-    );
+    const encoded = encodeURIComponent(msg);
+    WA_NUMBERS.forEach((num, i) => {
+      setTimeout(() => {
+        window.open(`https://wa.me/${num}?text=${encoded}`, "_blank", "noopener,noreferrer");
+      }, i * 600);
+    });
 
     (e.currentTarget as HTMLFormElement).reset();
     setNeed("");
@@ -102,7 +103,7 @@ export function Contact() {
             <Reveal delay={120}>
               <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:mt-9">
                 <CtaLink
-                  href={`https://wa.me/${WA_NUMBER}?text=${encodeURIComponent("Hi CalypsoWebsiteBuilders! I would like to get a quote.")}`}
+                  href={`https://wa.me/${WA_NUMBERS[0]}?text=${encodeURIComponent("Hi CalypsoWebsiteBuilders! I would like to get a quote.")}`}
                   target="_blank"
                   rel="noreferrer"
                   variant="teal"
