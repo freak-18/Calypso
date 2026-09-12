@@ -3,6 +3,7 @@ import {
   ShieldCheck, Globe, Puzzle, Check, ArrowUpRight,
 } from "lucide-react";
 import { Reveal, SectionHeading, useTilt } from "./Reveal";
+import { setSelectedService } from "@/lib/quoteStore";
 
 const services = [
   {
@@ -113,12 +114,17 @@ function ServiceCard({ s, i }: { s: typeof services[0]; i: number }) {
           ))}
         </ul>
 
-        <a
-          href="#contact"
+        <button
+          type="button"
+          onClick={() => {
+            const points = s.points.map((p) => `• ${p}`).join("\n");
+            setSelectedService(s.name, points);
+            document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+          }}
           className="mt-auto flex items-center gap-1.5 pt-6 font-display text-xs font-semibold tracking-wide text-primary opacity-0 transition-all duration-300 group-hover:opacity-100 group-hover:translate-x-1"
         >
           Get a quote <ArrowUpRight className="size-3.5" />
-        </a>
+        </button>
       </article>
     </Reveal>
   );

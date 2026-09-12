@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { MessageCircle, Send } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { CtaButton, CtaLink } from "./Cta";
 import { Reveal, SectionHeading } from "./Reveal";
+import { getSelectedService, clearSelectedService } from "@/lib/quoteStore";
 
 const needs = [
   "Starter Website",
@@ -19,6 +20,7 @@ const needs = [
   "Premium Website",
   "E-Commerce",
   "Maintenance",
+  "Domain & Hosting",
   "Custom Feature",
   "Not Sure Yet",
 ];
@@ -27,6 +29,25 @@ const WA_NUMBER = "916374423734";
 
 export function Contact() {
   const [need, setNeed] = useState("");
+  const [desc, setDesc] = useState("");
+
+  // Auto-fill when navigated from a service card
+  useEffect(() => {
+    const prefill = getSelectedService();
+    if (prefill.service) {
+      setNeed(prefill.service);
+      setDesc(prefill.desc);
+      clearSelectedService();
+    }
+
+    const handler = (e: Event) => {
+      const { service, desc } = (e as CustomEvent<{ service: string; desc: string }>).detail;
+      setNeed(service);
+      setDesc(desc);
+    };
+    window.addEventListener("calypso:service-selected", handler);
+    return () => window.removeEventListener("calypso:service-selected", handler);
+  }, []);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,7 +57,7 @@ export function Contact() {
     const business = fd.get("business") as string;
     const phone    = fd.get("phone") as string;
     const email    = fd.get("email") as string;
-    const project  = fd.get("project") as string;
+    const project  = fd.get("project") as string || desc;
 
     const msg = [
       `Hi CalypsoWebsiteBuilders! I'd like to get a quote.`,
@@ -59,6 +80,7 @@ export function Contact() {
 
     (e.currentTarget as HTMLFormElement).reset();
     setNeed("");
+    setDesc("");
   }
 
   return (
@@ -136,6 +158,8 @@ export function Contact() {
                   id="project"
                   name="project"
                   rows={4}
+                  value={desc}
+                  onChange={(e) => setDesc(e.target.value)}
                   className="rounded-xl border-input bg-background/40"
                   placeholder="Goals, timeline, references..."
                 />
